@@ -1,0 +1,140 @@
+register CTRL_FF {
+
+  field cfg_input_enable (cfg_input_enable) @'h0 {
+    bits 1;
+    reset 'h0;
+    access rw;
+  }
+
+  field cfg_fe_offset_lock (cfg_fe_offset_lock) @'h1 {
+    bits 1;
+    reset 'h0;
+    access rw;
+  }    
+
+  field cfg_tmplt_pack_mode (cfg_tmplt_pack_mode) @'h4 {
+    bits 2;
+    reset 'h0;
+    access rw;
+  }    
+
+}
+
+register REAL_DEPTH_FF {
+
+  field cfg_real_depth (cfg_real_depth) @'h0 {
+    bits 16;
+    reset 'h0;
+    access rw;
+  }
+
+}
+
+register LINE_WR_FF {
+
+  field cfg_line_wr_strb (cfg_line_wr_strb) @'h0 {
+    bits 8;
+    reset 'h0;
+    access rw;
+  }
+
+  field cfg_line_wr_msk (cfg_line_wr_msk) @'h8 {
+    bits 8;
+    reset 'h0;
+    access rw;
+  }    
+
+}
+
+register RAM_BASE_FF {
+
+  field cfg_ram_base (cfg_ram_base) @'h0 {
+    bits 32;
+    reset 'h0;
+    access rw;
+  }
+
+}
+
+register RAM_BASE_OFFSET_FF {
+
+  field cfg_ram_base_offset (cfg_ram_base_offset) @'h0 {
+    bits 32;
+    reset 'h0;
+    access rw;
+  }
+
+}
+
+register ACTIVED_CHNL_FF {
+
+  field cfg_actived_chnl (cfg_actived_chnl) @'h0 {
+    bits 16;
+    reset 'h0;
+    access rw;
+  }
+
+}
+
+register ACTIVED_CHNL_BITS_FF {
+
+  field cfg_actived_chnl_bits (cfg_actived_chnl_bits) @'h0 {
+    bits 32;
+    reset 'h0;
+    access rw;
+  }
+
+}
+
+register INACTIVED_CHNL_BITS_FF {
+
+  field cfg_inactived_ram_bits (cfg_inactived_ram_bits) @'h0 {
+    bits 16;
+    reset 'h0;
+    access rw;
+  }
+
+}
+
+register RO_TEST_FF {
+
+  field ro_test_sts0 (ro_test_sts0) @'d0 {
+    bits 4;
+    reset 'h0;
+    access ro;
+  }
+
+  field ro_test_sts1 (ro_test_sts1) @'d4 {
+    bits 3;
+    reset 'h0;
+    access ro;
+  }
+
+  field ro_test_sts2 (ro_test_sts2) @'d8 {
+    bits 5;
+    reset 'h0;
+    access ro;
+  }
+
+  field cfg_in_ro_test (cfg_in_ro_test) @'d16 {
+    bits 8;
+    reset 'h0;
+    access rw;
+  }
+
+}
+
+block line_buffer {
+
+  bytes 4;
+  register CTRL_FF                (u_line_buffer_apb.U_LINE_BUFFER_REG) @'h10; 
+  register REAL_DEPTH_FF          (u_line_buffer_apb.U_LINE_BUFFER_REG) @'h14; 
+  register LINE_WR_FF             (u_line_buffer_apb.U_LINE_BUFFER_REG) @'h18;
+  register RAM_BASE_FF            (u_line_buffer_apb.U_LINE_BUFFER_REG) @'h1c; 
+  register RAM_BASE_OFFSET_FF     (u_line_buffer_apb.U_LINE_BUFFER_REG) @'h20; 
+  register ACTIVED_CHNL_FF        (u_line_buffer_apb.U_LINE_BUFFER_REG) @'h24; 
+  register ACTIVED_CHNL_BITS_FF   (u_line_buffer_apb.U_LINE_BUFFER_REG) @'h28; 
+  register INACTIVED_CHNL_BITS_FF (u_line_buffer_apb.U_LINE_BUFFER_REG) @'h2c; 
+  register RO_TEST_FF             (u_line_buffer_apb.U_LINE_BUFFER_REG) @'h30; 
+
+}
