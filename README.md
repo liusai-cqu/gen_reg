@@ -1,2 +1,2 @@
 # gen_reg
-scripts used to generate RAL and RTL
+陈旧的，不再使用
